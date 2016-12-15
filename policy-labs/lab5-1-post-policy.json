@@ -1,0 +1,19 @@
+{
+    "policyName": "",
+    "policyOwner": "admin",
+    "policyPriority": "",
+    "resource": {
+      "applications": [   
+          {
+            "appName": "",
+            "id": ""
+          }]
+    },
+    "actions": [
+        "DENY"
+    ],
+    "policyScope": "",
+    "actionProperty": {
+        "relevanceLevel": ""
+    }
+}
