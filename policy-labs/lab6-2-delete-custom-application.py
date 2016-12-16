@@ -10,16 +10,16 @@ from apicem import * # APIC-EM IP is assigned in apicem_config.py
 def select_application(ap):
     """
     This function ask user to select a custom application from a list
-    
+
     Parameters
     ----------
-    ap (object): apic-em oject that defined in apicem.py
- 
+    ap (object): apic-em object that defined in apicem.py
+
     Return:
     -------
     str : custom application id
-    """    
-    
+    """
+
     app = []
     params={"isCustom":True} # filter, only retrieve custom application
     try:
@@ -29,14 +29,14 @@ def select_application(ap):
         app = response_json["response"]
     except:
         print ("Something wrong, cannot get application information")
-        sys.exit()  
-    
+        sys.exit()
+
     if status != 200:
         print ("Response status %s,Something wrong !"%status)
         sys.exit()
 
     custom_app = []
-    if app != [] :   # if response is not empty 
+    if app != [] :   # if response is not empty
         # Extracting attributes
         idx=0
         for item in app:
@@ -68,7 +68,7 @@ def select_application(ap):
         # Iterate custom application list
         for item in custom_app:
             match = False
-            # Go Through 'in used' applications and insert policy name in the position 2 of the list 
+            # Go Through 'in used' applications and insert policy name in the position 2 of the list
             for item1 in app_in_policy:
                 print (item[1])
                 if item[1] in item1:
@@ -82,16 +82,16 @@ def select_application(ap):
                 i=i+1
         print ("******** If application is used by policy it cannot be deleted ! *************")
         print (tabulate(custom_app, headers=['number','custom application','used by policy'],tablefmt="rst"),'\n')
-                                   
+
     ######## Now let user to select an application and delete it #######
-    # Ask user's input 
+    # Ask user's input
     # In the loop until 'id' is assigned or user select 'exit'
     app_id = ""
     id_idx = 3 # #custom_app id is in position 3
     while True:
         user_input = input('=> Select a number for the application to delete:' )
         user_input= user_input.replace(" ","") # ignore space
-        if user_input.lower() == 'exit': 
+        if user_input.lower() == 'exit':
             sys.exit()
         if user_input.isdigit():
             if int(user_input) in range(1,len(custom_app)+1):
@@ -102,14 +102,14 @@ def select_application(ap):
         else:
             print ("Oops! input is not a digit, please try again or enter 'exit'")
     # End of while loop
-            
+
 #### Delete application ####
 
 if __name__ == "__main__":
     myapicem = apicem() # initialize apicem instance
-    app_id=select_application(myapicem)  # get custom application id 
+    app_id=select_application(myapicem)  # get custom application id
     try:
         myapicem.delete(api="application/"+app_id,printOut=True) # Delete application by application id
     except:
         print ("Something wrong with deleting application")
-        sys.exit()  
+        sys.exit()

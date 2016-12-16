@@ -7,15 +7,15 @@ from  apicem import * # APIC-EM IP is assigned in apicem_config.py
 def select_tag(ap):
     """
     This function ask user to select a policy tag a list
-    
+
     Parameters
     ----------
-    ap (object): apic-em oject that defined in apicem.py
- 
+    ap (object): apic-em object that defined in apicem.py
+
     Return:
     -------
     str : policy tag
-    """   
+    """
     try:
         resp = ap.get(api="policy/tag/count")
         response_json = resp.json()
@@ -47,12 +47,12 @@ def select_tag(ap):
                     i+=1
                     tag_list.append([i,item["policyTag"],item1["deviceName"],item1["deviceIp"]])
 
-    
+
     print ("*** If policy tag is associated with network device, it cannot be deleted ***\n")
-    print ("---------------- Select one with no network device attached -----------------\n")      
+    print ("---------------- Select one with no network device attached -----------------\n")
     print (tabulate(tag_list, headers=['Number','Policy Tag associated with','Device Name','Device IP'],tablefmt="rst"),'\n')
 
-    # Ask user's input 
+    # Ask user's input
     # In the loop until tag is selected or user select 'exit'
     tag_to_delete=""
     tag_idx = 1 # 1 is the position of policy tag
@@ -60,15 +60,15 @@ def select_tag(ap):
     while True:
         tag_num = input('=> Enter a number from above to delete policy tag: ')
         tag_num = tag_num.replace(" ","") # ignore space
-        if tag_num.lower() == 'exit': 
+        if tag_num.lower() == 'exit':
             sys.exit()
         if tag_num.isdigit():
             if int(tag_num) in range(1,len(tag_list)+1):
-                tag_to_delete=tag_list[int(tag_num)-1][tag_idx] # 1 is the position of policy tag               
+                tag_to_delete=tag_list[int(tag_num)-1][tag_idx] # 1 is the position of policy tag
                 # to prevent user executing `DELETE /policy/tag` API not knowing actually fail to delete policy tag
-                if tag_list[int(tag_num)-1][device_ip_idx] !="": 
+                if tag_list[int(tag_num)-1][device_ip_idx] !="":
                     print("This tag is still associated with network device, select one with no denwork device attached !")
-                else:    
+                else:
                     return tag_to_delete # OK to return policy tag name
             else:
                 print ("Oops! number is out of range, please try again or enter 'exit'")
@@ -81,14 +81,14 @@ def select_tag(ap):
         sys.exit()
 
 ############################### Delete policy tag  ##############################
-    
+
 if __name__ == "__main__":
     myapicem = apicem() # initialize apicem instance
-    tag_to_delete = select_tag(myapicem) # get the policy tag name 
+    tag_to_delete = select_tag(myapicem) # get the policy tag name
     params={'policyTag':tag_to_delete} # to delete policy tag we need to pass tag name as parameter
     try:
         myapicem.delete(api="policy/tag/",params=params,printOut=True)
     except:
         print ("Something wrong with deleting policy/tag")
-        sys.exit()  
-    
+        sys.exit()
+

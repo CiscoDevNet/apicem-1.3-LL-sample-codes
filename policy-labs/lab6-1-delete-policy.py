@@ -7,11 +7,11 @@ from apicem import * # APIC-EM IP is assigned in apicem_config.py
 
 def select_policy(ap):
     """
-    This function ask user to select a polcy from a list
+    This function ask user to select a policy from a list
 
     Parameters
     ----------
-    ap (object): apic-em oject that defined in apicem.py
+    ap (object): apic-em object that defined in apicem.py
 
     Return:
     -------
@@ -55,8 +55,8 @@ def select_policy(ap):
     # Ask user's input
     # In the loop until 'policy id' is assigned or user entered 'exit'
 
-    name_idx = 1 # polcy name index in the list
-    id_idx = 2   # polcy id index in the list
+    name_idx = 1 # policy name index in the list
+    id_idx = 2   # policy id index in the list
     while True:
         user_input = input('=> Select a number for the policy to delete: ' )
         user_input= user_input.replace(" ","") # ignore space
