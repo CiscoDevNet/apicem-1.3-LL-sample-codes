@@ -9,16 +9,16 @@ from apicem import *  # APIC-EM IP is assigned in apicem_config.py
 def get_policy(ap):
     """
     This function print out all policies
-    
+
     Parameters
     ----------
-    ap (object): apic-em oject that defined in apicem.py
- 
+    ap (object): apic-em object that defined in apicem.py
+
     Return:
     -------
     None
     """
-    
+
     # policy list
     policy = []
     try:
@@ -28,8 +28,8 @@ def get_policy(ap):
         policy = response_json["response"] # network-device
     except:
         print ("Something wrong, cannot get policy information")
-        sys.exit()  
-    
+        sys.exit()
+
     if status != 200:
         print ("Response status %s,Something wrong !"%status)
         print (resp.text)
@@ -40,7 +40,7 @@ def get_policy(ap):
     if policy == [] :
         print ("No policy was found !")
         sys.exit()
-    # if response is not empty 
+    # if response is not empty
     policy_list = []
     # Extracting attributes
     for item in policy:
@@ -48,8 +48,8 @@ def get_policy(ap):
     # Show all policies
     # Pretty print tabular data, needs 'tabulate' module
     print (tabulate(policy_list, headers=['policy','id'],tablefmt="rst"),'\n')
-    
-if __name__ == "__main__":   
+
+if __name__ == "__main__":
     myapicem = apicem() # initialize apicem instance, taking all defaults from apicem_config.py
     get_policy(myapicem)
 

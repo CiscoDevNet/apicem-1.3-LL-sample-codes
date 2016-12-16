@@ -37,7 +37,7 @@ class apicem(object):
         version (str): apic-em version
         **kwargs: arbitrary number of keyword arguments (optional, use as needed)
 
-        Will use default valuse from apicem_config.py for host, username, password and version
+        Will use default value from apicem_config.py for host, username, password and version
         if there are not assigned during creating apicem instanstance.
 
         Methods:
@@ -130,7 +130,7 @@ class apicem(object):
         -------
         object: an instance of the Response object(of requests module)
 
-        Authentication token is obtained during the object initializztion and assigned to self.headers
+        Authentication token is obtained during the object initialization and assigned to self.headers
         when calling get_X_auth_token()
         """
         try:
@@ -160,7 +160,7 @@ class apicem(object):
         -------
         object: an instance of the Response object(of requests module)
 
-        Authentication token is obtained during the object initializztion and assigned to self.headers
+        Authentication token is obtained during the object initialization and assigned to self.headers
         when calling get_X_auth_token()
         """
 
@@ -192,7 +192,7 @@ class apicem(object):
         -------
         object: an instance of the Response object(of requests module)
 
-        Authentication token is obtained during the object initializztion and assigned to self.headers
+        Authentication token is obtained during the object initialization and assigned to self.headers
         when calling get_X_auth_token()
         """
 
@@ -222,7 +222,7 @@ class apicem(object):
         -------
         object: an instance of the Response object(of requests module)
 
-        Authentication token is obtained during the object initializztion and assigned to self.headers
+        Authentication token is obtained during the object initialization and assigned to self.headers
         when calling get_X_auth_token()
         """
         try:

@@ -8,10 +8,10 @@ from apicem import * # APIC-EM IP is assigned in apicem_config.py
 def post_app(ap,app_json):
     """
     This function is used to create an application
-    
+
     Parameters
     ----------
-    ap (object): apic-em oject that defined in apicem.py
+    ap (object): apic-em object that defined in apicem.py
     app_json(JSON): JSON object for POST /application
 
     Return:
@@ -34,7 +34,7 @@ def post_app(ap,app_json):
     for item in categories:
         if item["name"] == app_json["category"]:
             app_json["categoryId"] = item["id"]
-        
+
     # Populate user input to JSON object
     app_json["helpString"] = pApp
     app_json["name"] = pApp
@@ -48,7 +48,7 @@ def post_app(ap,app_json):
         resp = ap.post(api="application", data=app_json,printOut=True)
     except:
         print ("Something wrong with POST /application !")
-        
+
 ##########################################################################
 if __name__ == "__main__":
     # Creating JSON object for the  POST request
@@ -87,6 +87,6 @@ if __name__ == "__main__":
         else:
             break
     # Everyrhing is OK so far, initialize apicem instance and create application
-    myapicem = apicem() 
+    myapicem = apicem()
     post_app(myapicem,app_json)
 

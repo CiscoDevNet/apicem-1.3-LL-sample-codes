@@ -9,13 +9,13 @@ from  apicem import * # APIC-EM IP is assigned in apicem_config.py
 # In the loop until input is not null or is 'exit'
 def enter_policy_name(ap):
     """
-    This function takes user input as polcy name and check if the name is used
+    This function takes user input as policy name and check if the name is used
     If name is not used return user's input
-    
+
     Parameters
     ----------
     ap (object): apic-em oject that defined in apicem.py
- 
+
     Return:
     -------
     str : policy name
@@ -24,8 +24,8 @@ def enter_policy_name(ap):
     while check_name:
         policy_name = input('=> Enter policy name that you like to create: ')
         policy_name = policy_name.lstrip() # Ignore leading space
-        if policy_name.lower() == 'exit': 
-            sys.exit()  
+        if policy_name.lower() == 'exit':
+            sys.exit()
         if policy_name == "":
             print ("Oops! Policy name cannot be NULL please try again or enter 'exit'")
         else: # Check if name is used
@@ -33,10 +33,10 @@ def enter_policy_name(ap):
             try:
                 resp= ap.get(api="policy") # The response (result) from "GET /policy" request
                 response_json = resp.json() # Get the json-encoded content from response
-                policy = response_json["response"] 
+                policy = response_json["response"]
             except:
                 print ("Something wrong, cannot get policy information")
-                sys.exit() 
+                sys.exit()
             for item in policy:
                 if policy_name == item["policyName"]:
                     print ("This policy name exists, please type in different name !")
@@ -44,18 +44,18 @@ def enter_policy_name(ap):
                     break
     return policy_name
 
-   
+
 ########### Ask user to select a policy Business-Relevance ##############
 
 def select_relevance():
     """
     This function list policy business relevance for user to select
     return a list that realetd user's selection - [relevancy_select[?],relevancy_tag[?]]
-    
+
     Parameters
     ----------
     None
- 
+
     Return:
     -------
     list : [relevanceLevel,relevanceTag]
@@ -63,13 +63,13 @@ def select_relevance():
     relevancy_select = [[1,'Business-Relevant'],[2,'Business-Irrelevant'],[3,'Default']]
     relevancy_tag = ['-BR','-IR','-D']
     print (tabulate(relevancy_select, headers=['#','Policy Business Relevancy'],tablefmt="rst"),'\n')
-    
+
     relevanceLevel = 'Default'
     # In the loop until tag is selected or user select 'exit'
     while True:
         tag_num = input('=> Enter a number above for policy Business Relevancy: ')
         tag_num = tag_num.lstrip() # Ignore leading space
-        if tag_num.lower() == 'exit': 
+        if tag_num.lower() == 'exit':
             sys.exit()
         if tag_num.isdigit():
             if int(tag_num) in range(1,len(relevancy_select)+1):
@@ -90,7 +90,7 @@ def get_tag_association(ap):
     Parameters
     ----------
     ap (object): apic-em object that defined in apicem.py
-    
+
     Return:
     -------
     list: tag list
@@ -103,7 +103,7 @@ def get_tag_association(ap):
         print ("Something wrong with getting policy tag !")
         sys.exit()
 
-    # If there is any polcy tag, the response will show what network device is tagged
+    # If there is any policy tag, the response will show what network device is tagged
     if tag ==[]:
         print ("No Policy tag is found")
         sys.exit()
@@ -119,11 +119,11 @@ def get_tag_association(ap):
                         tag_list.append([i,item["policyTag"],item1["deviceName"],item1["deviceIp"],item1["deviceId"]])
                 else:
                     i+=1
-                    tag_list.append([i,item["policyTag"],"","",""]) 
+                    tag_list.append([i,item["policyTag"],"","",""])
         if tag_list == []:
             print ("No policy tag association is found, nothing to show")
             sys.exit()
-    return (tag_list)            
+    return (tag_list)
 
 ########### Ask user to select a policy tag name ##############
 
@@ -134,7 +134,7 @@ def select_tag(ap):
     Parameters
     ----------
     ap (object): apic-em oject that defined in apicem.py
- 
+
     Return:
     -------
     str : policy tag
@@ -148,38 +148,38 @@ def select_tag(ap):
     while True:
         tag_num = input('=> Select a policy tag that is associated with network device : ')
         tag_num = tag_num.lstrip() # Ignore leading space
-        if tag_num.lower() == 'exit': 
+        if tag_num.lower() == 'exit':
             sys.exit()
         if tag_num.isdigit():
             if int(tag_num) in range(1,len(tag_list)+1):
                 nd_id = tag_list[int(tag_num)-1][nd_id_idx]
-                if nd_id == "":                
+                if nd_id == "":
                     print ("Oops! This policy tag is not associated with any netwotk device, please try again or enter 'exit'")
-                else:    
+                else:
                     tag_name = tag_list[int(tag_num)-1][tag_name_idx]
-                    break       
+                    break
             else:
                 print ("Oops! Number is out of range, please try again or enter 'exit'")
         else:
             print ("Oops! Input is not a digit, please try again or enter 'exit'")
     # End of while loop
     return tag_name
-   
+
 ########## Select an application and retrieve its id #################
 def select_app(ap):
     """
     This function list applications for user to select
     return a list with application name and application id
-    
+
     Parameters
     ----------
-    ap (object): apic-em oject that defined in apicem.py
- 
+    ap (object): apic-em object that defined in apicem.py
+
     Return:
     -------
-    list : [app_name,app_id] 
+    list : [app_name,app_id]
     """
-        
+
     print ("** Retrieving applications may take a while, please wait......... **\n")
     app = []
     try:
@@ -189,8 +189,8 @@ def select_app(ap):
         app = response_json["response"]
     except:
         print ("Something wrong, cannot get application information")
-        sys.exit()  
-    
+        sys.exit()
+
     if status != 200:
         print ("Response status %s,Something wrong !"%status)
         sys.exit()
@@ -219,8 +219,8 @@ def select_app(ap):
         app = response_json["response"]
     except:
         print ("Something wrong, cannot get application information")
-        sys.exit()  
-    
+        sys.exit()
+
     if status != 200:
         print ("Response status %s,Something wrong !"%status)
         sys.exit()
@@ -236,40 +236,40 @@ def select_app(ap):
         print ("*************  All custom applications *************")
         print (tabulate(short_list, headers=['custom application','id'],tablefmt="rst"),'\n')
 
-    # Ask user's select application in order to retrieve its id 
+    # Ask user's select application in order to retrieve its id
     # In the loop until 'id' is assigned or user select 'exit'
-    
+
     app_id = ""
     select = True
     while select:
         app_name = input('=> Enter application name from above(default or custom,case-sensitive) to create policy: ')
         app_name = app_name.lstrip() # Ignore leading space
-        if app_name.lower() == 'exit': 
-            sys.exit()           
+        if app_name.lower() == 'exit':
+            sys.exit()
         for item in app_list:
-            if app_name == item[0]: # if user_input(application name) is matched 
+            if app_name == item[0]: # if user_input(application name) is matched
                 app_id = item[1]    # index 1 is the application id
                 select = False
                 break
         if app_id == "":
             print ("Oops! application was not found, please try again or enter 'exit'")
     # End of while loop
-  
+
     return [app_name,app_id]
 
 
 
 if __name__ == "__main__":
     myapicem = apicem() # initialize apicem instance
-    policy_name = enter_policy_name(myapicem) # First wnter policy name
+    policy_name = enter_policy_name(myapicem) # First enter policy name
     relevance = select_relevance()
     relevanceLevel = relevance[0]
     # policy_name = policy_name + relevance[1] # append relevance abbreviation to the policay name
     tag_name = select_tag(myapicem) # select a policy tag
-    app = select_app(myapicem) # select an application 
+    app = select_app(myapicem) # select an application
     app_name = app[0]
     app_id = app[1]
- 
+
     # JSON object for POST /policy
     #  "SET_PROPERTY"
     policy_json = [{
@@ -297,5 +297,5 @@ if __name__ == "__main__":
         myapicem.post(api="policy", data=policy_json,printOut=True)
     except:
         print ("Something wrong with POST policy")
-        sys.exit()  
- 
+        sys.exit()
+

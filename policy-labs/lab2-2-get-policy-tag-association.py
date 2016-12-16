@@ -11,7 +11,7 @@ def get_tag_association(ap):
     Parameters
     ----------
     ap (object): apic-em object that defined in apicem.py
-    
+
     Return:
     -------
     None
@@ -34,16 +34,16 @@ def get_tag_association(ap):
         for item in tag:
             if "policyTag" in item:
                 i+=1
-                if item["networkDevices"] != []: # If there is at least one network devic associated
+                if item["networkDevices"] != []: # If there is at least one network device associated
                     for item1 in item["networkDevices"]: # There could be more than one network devices associated with the same tag
-                        # Adding number in the beginnng of each row
+                        # Adding number in the beginning of each row
                         tag_list.append([i,item["policyTag"],item1["deviceName"],item1["deviceIp"],item1["deviceId"]])
                 else:
-                    tag_list.append([i,item["policyTag"],"","",""]) 
+                    tag_list.append([i,item["policyTag"],"","",""])
         if tag_list == []:
             print ("No policy tag association is found, nothing to show")
             sys.exit()
-             
+
     print (tabulate(tag_list, headers=['#','Policy Tag associated with','Device Name','Device IP','Deice ID'],tablefmt="rst"),'\n')
 
 if __name__ == "__main__":
