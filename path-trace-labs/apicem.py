@@ -1,7 +1,7 @@
 """
 This script provides a function to get APIC-EM authentication token
 and functions to make APIC-EM REST APIs request
-All required modules are imported in this script so from other script just need to import this scrpt
+All required modules are imported in this script so from other scripts just need to import this script
 """
 import requests   # We use Python external "requests" module to do HTTP query
 import json

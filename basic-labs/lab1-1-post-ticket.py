@@ -1,6 +1,6 @@
 """
 This script retrives a authenication token from APIC-EM and prints out it's value
-It is standalone, no any dependency
+It is standalone, there is no dependency.
 """
 
 import requests   # We use Python "requests" module to do HTTP GET query
