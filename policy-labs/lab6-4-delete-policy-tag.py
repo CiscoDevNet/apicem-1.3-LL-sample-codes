@@ -67,7 +67,7 @@ def select_tag(ap):
                 tag_to_delete=tag_list[int(tag_num)-1][tag_idx] # 1 is the position of policy tag
                 # to prevent user executing `DELETE /policy/tag` API not knowing actually fail to delete policy tag
                 if tag_list[int(tag_num)-1][device_ip_idx] !="":
-                    print("This tag is still associated with network device, select one with no denwork device attached !")
+                    print("This tag is still associated with network device, select one with no network device attached !")
                 else:
                     return tag_to_delete # OK to return policy tag name
             else:
