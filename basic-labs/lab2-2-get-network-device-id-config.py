@@ -1,6 +1,6 @@
 """
 This script prints out IOS config by deviceId:
-User select a device from the list and script retrive device ID according to user's selection
+User select a device from the list and script retrieve device ID according to user's selection
 then calls - GET /network-device/{id}/config - to print out IOS configuration
 """
 from apicem import * # APIC-EM IP is assigned in apicem_config.py

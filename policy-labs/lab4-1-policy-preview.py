@@ -156,7 +156,7 @@ def select_tag(ap):
             if int(tag_num) in range(1,len(tag_list)+1):
                 nd_id = tag_list[int(tag_num)-1][nd_id_idx]
                 if nd_id == "":
-                    print ("Oops! This policy tag is not associated with any netwotk device, please try again or enter 'exit'")
+                    print ("Oops! This policy tag is not associated with any network device, please try again or enter 'exit'")
                 else:
                     tag_name = tag_list[int(tag_num)-1][tag_name_idx]
                     break

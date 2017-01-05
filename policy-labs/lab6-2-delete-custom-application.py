@@ -46,7 +46,7 @@ def select_application(ap):
         # Pretty print tabular data, needs 'tabulate' module
 
     if custom_app == []:
-        print ("No any custom NBAR2 application, nothing to delete !")
+        print ("No custom NBAR2 application found, nothing to delete !")
         sys.exit()
     else:
         name_list=[]   # List of all custom application names
@@ -61,7 +61,7 @@ def select_application(ap):
                 for item1 in item["resource"]["applications"]:
                     if item1["appName"] in name_list:
                         app_in_policy.append([item1["appName"],item["policyName"]])
-        # In here we check is there any application used by policy
+        # In here we check if there is any application used by policy
         # If application is used the we won't be able to delete
         i = 0
         policy_name_idx=2

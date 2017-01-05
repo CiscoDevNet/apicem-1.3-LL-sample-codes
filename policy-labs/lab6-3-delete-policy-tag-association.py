@@ -22,7 +22,7 @@ def select_tag_association(ap):
     try:
         resp = ap.get(api="policy/tag/association")
         response_json = resp.json()
-        tag = response_json["response"] # policy tag tag association
+        tag = response_json["response"] # policy tag association
     except:
         print ("Something wrong with getting policy tag !")
         sys.exit()

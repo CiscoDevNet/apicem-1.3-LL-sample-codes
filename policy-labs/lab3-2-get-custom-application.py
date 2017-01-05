@@ -5,18 +5,18 @@ Get application(s) based on the filter - "isCustom":True
 """
 
 
-def get_cuntom_app(ap):
+def get_custom_app(ap):
     """
     This function print out all network devices have policy tag
     Parameters
     ----------
     ap (object): apic-em object that defined in apicem.py
-    
+
     Return:
     -------
     list : A list of custom application with name and id
     """
-    
+
     app = []
     # Set "isCustom = True" so the API will return only custom application(s)
     params={"isCustom":True}
@@ -27,8 +27,8 @@ def get_cuntom_app(ap):
         app = response_json["response"]
     except:
         print ("Something wrong, cannot get application information")
-        sys.exit()  
-    
+        sys.exit()
+
     if status != 200:
         print ("Response status %s,Something wrong !"%status)
         sys.exit()
@@ -47,7 +47,7 @@ def get_cuntom_app(ap):
 
 if __name__ == "__main__":
     myapicem = apicem() # Initialize apicem instance
-    a_list = get_cuntom_app(myapicem)
+    a_list = get_custom_app(myapicem)
     if a_list !=[]:
         print ("*************  All custom applications *************\n")
         print (tabulate(a_list, headers=['custom application','application id'],tablefmt="rst"),'\n')

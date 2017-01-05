@@ -10,7 +10,7 @@ def get_host():
     This function returns a tabular list of all hosts that are connected to APIC-EM network devices.
     Return:
     ------
-    list: a list of all hosts and netwrok devices with a number tag
+    list: a list of all hosts and network devices with a number tag
     """
     host_list=[]
     try:

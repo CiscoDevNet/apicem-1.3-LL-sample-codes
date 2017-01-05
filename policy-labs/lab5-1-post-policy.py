@@ -14,7 +14,7 @@ def enter_policy_name(ap):
 
     Parameters
     ----------
-    ap (object): apic-em oject that defined in apicem.py
+    ap (object): apic-em object that defined in apicem.py
 
     Return:
     -------
@@ -50,7 +50,7 @@ def enter_policy_name(ap):
 def select_relevance():
     """
     This function list policy business relevance for user to select
-    return a list that realetd user's selection - [relevancy_select[?],relevancy_tag[?]]
+    return a list that related user's selection - [relevancy_select[?],relevancy_tag[?]]
 
     Parameters
     ----------
@@ -115,7 +115,7 @@ def get_tag_association(ap):
                 if item["networkDevices"] != []: # If there is at least one network device associated
                     for item1 in item["networkDevices"]: # There could be more than one network device associated with the same tag
                         i+=1
-                        # Adding number in the beginnng of each row
+                        # Adding number in the beginning of each row
                         tag_list.append([i,item["policyTag"],item1["deviceName"],item1["deviceIp"],item1["deviceId"]])
                 else:
                     i+=1
@@ -133,7 +133,7 @@ def select_tag(ap):
 
     Parameters
     ----------
-    ap (object): apic-em oject that defined in apicem.py
+    ap (object): apic-em object that defined in apicem.py
 
     Return:
     -------
@@ -154,7 +154,7 @@ def select_tag(ap):
             if int(tag_num) in range(1,len(tag_list)+1):
                 nd_id = tag_list[int(tag_num)-1][nd_id_idx]
                 if nd_id == "":
-                    print ("Oops! This policy tag is not associated with any netwotk device, please try again or enter 'exit'")
+                    print ("Oops! This policy tag is not associated with any network device, please try again or enter 'exit'")
                 else:
                     tag_name = tag_list[int(tag_num)-1][tag_name_idx]
                     break
@@ -264,7 +264,7 @@ if __name__ == "__main__":
     policy_name = enter_policy_name(myapicem) # First enter policy name
     relevance = select_relevance()
     relevanceLevel = relevance[0]
-    # policy_name = policy_name + relevance[1] # append relevance abbreviation to the policay name
+    # policy_name = policy_name + relevance[1] # append relevance abbreviation to the policy name
     tag_name = select_tag(myapicem) # select a policy tag
     app = select_app(myapicem) # select an application
     app_name = app[0]

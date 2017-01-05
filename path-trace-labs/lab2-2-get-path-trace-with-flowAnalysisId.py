@@ -1,6 +1,6 @@
 """
 Script name: lab2-2-get-path-trace-with-flowAnalysisId.py
-This script prints outAPIC-EM path trace information between the souce and destination host(network device).
+This script prints outAPIC-EM path trace information between the source and destination host(network device).
 """
 
 from apicem import *
@@ -23,7 +23,7 @@ def check_status(arg,arg1):
     flowAnalysisId = arg1
     count = 0
     while status != "COMPLETED":
-        if status == "FAILED": 
+        if status == "FAILED":
             print("Unable to find full path. No traceroute or netflow information found. Failing path calculation.")
             print("\n------ End of path trace ! ------")
             sys.exit()
@@ -47,11 +47,11 @@ def check_status(arg,arg1):
 
 def get_host_and_device():
     """
-    This function returns a list of all hosts and netwrok devices with a number tag.
+    This function returns a list of all hosts and network devices with a number tag.
 
     Return:
     ------
-    list: a list of all hosts and netwrok devices with a number tag
+    list: a list of all hosts and network devices with a number tag
     """
     ip_list=[]
     idx=0
@@ -64,13 +64,13 @@ def get_host_and_device():
         if response_json["response"] !=[]:
             for item in response_json["response"]:
                 i+=1
-                ip_list.append([i,"host",item["hostIp"]]) 
+                ip_list.append([i,"host",item["hostIp"]])
             idx=i # This idx(sequential number) will be used to tag host and network device
                   # So far this number = the number of hosts
     except:
         print ("Something wrong, cannot get host IP list")
 
-    # Now get network device and append it to the list    
+    # Now get network device and append it to the list
     try:
         resp= get(api="network-device")
         print ("Status: of GET /network-device ",resp.status_code)  # This is the http request status
@@ -78,7 +78,7 @@ def get_host_and_device():
         if response_json["response"] !=[]:
             for item in response_json["response"]:
                 idx+=1
-                ip_list.append([idx,"network device",item["managementIpAddress"]])   
+                ip_list.append([idx,"network device",item["managementIpAddress"]])
     except:
         print ("Something wrong ! Cannot get network-device IP list !")
     # Now "ip_list" should have hosts and network-devices
@@ -91,11 +91,11 @@ def select_ip(prompt,ip_list,idx):
     Parameters
     ----------
     prompt: str
-        message to promt user
+        message to prompt user
     ip_list: list
         a list with idx that user can make a selection
     idx: int
-        position of element to retrive from list
+        position of element to retrieve from list
 
     Return:
     -------
@@ -124,7 +124,7 @@ if __name__ == "__main__": # execute only if run as a script
     if len(nd_list) < 2:
         print ("We need at least 2 host or network-device to perform path trace!")
         sys.exit()
-    
+
     print (tabulate(nd_list,headers=['number','type','ip'],tablefmt="rst"))
     print ("*** Please note that not all source/destination ip pair will return a path - no route. ! *** \n")
     s_ip = select_ip('=> Select a number for the source IP from above list: ',nd_list,ip_idx) # ip_idx (=2) is the position of IP in the list

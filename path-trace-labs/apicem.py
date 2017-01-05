@@ -66,7 +66,7 @@ def get(ip=apicem_config.APICEM_IP,ver=apicem_config.VERSION,uname=apicem_config
     ver (str): apic-em VERSION
     uname (str): user name to authenticate with
     pword (str): PASSWORD to authenticate with
-    api (str): apim-em api without prefix
+    api (str): apic-em api without prefix
     params (str): optional parameter for GET request
 
     Return:
@@ -96,7 +96,7 @@ def post(ip=apicem_config.APICEM_IP,ver=apicem_config.VERSION,uname=apicem_confi
     ver (str): apic-em VERSION
     uname (str): user name to authenticate with
     pword (str): PASSWORD to authenticate with
-    api (str): apim-em api without prefix
+    api (str): apic-em api without prefix
     data (JSON): JSON object
 
     Return:
@@ -126,7 +126,7 @@ def put(ip=apicem_config.APICEM_IP,ver=apicem_config.VERSION,uname=apicem_config
     VERSION (str): apic-em VERSION
     USERNAME (str): user name to authenticate with
     PASSWORD (str): PASSWORD to authenticate with
-    api (str): apim-em api without prefix
+    api (str): apic-em api without prefix
     data (JSON): JSON object
 
     Return:
@@ -156,7 +156,7 @@ def delete(ip=apicem_config.APICEM_IP,ver=apicem_config.VERSION,uname=apicem_con
     ver (str): apic-em VERSION
     uname (str): user name to authenticate with
     pword (str): PASSWORD to authenticate with
-    api (str): apim-em api without prefix
+    api (str): apic-em api without prefix
     params (str): optional parameter for DELETE request
 
     Return:

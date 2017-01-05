@@ -24,7 +24,7 @@ def get_tag_association(ap):
         print ("Something wrong with getting policy tag !")
         sys.exit()
 
-    # If there is any polcy tag, the response will show what network device is tagged
+    # If there is any policy tag, the response will show what network device is tagged
     if tag ==[]:
         print ("No Policy tag is found")
         sys.exit()

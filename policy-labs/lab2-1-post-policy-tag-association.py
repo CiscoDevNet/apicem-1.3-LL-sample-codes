@@ -7,7 +7,7 @@ from apicem import * # APIC-EM IP is assigned in apicem_config.py
 
 def select_device_id(ap):
     """
-    This function returns a netwrok device id that user selected from a list.
+    This function returns a network device id that user selected from a list.
     Exit script if there is no any network device.
 
     Parameters
@@ -16,7 +16,7 @@ def select_device_id(ap):
 
     Return:
     -------
-    str: netwrok device id
+    str: network device id
     """
     device=[]
     # Create a list of network devices

@@ -1,7 +1,7 @@
 """
 This script calls "GET /network-device" API and print out
 an easy to read list with device host name,device ip and device type
-All simplify REST request functions and get authetication token function are in apicem.py
+All simplify REST request functions and get authentication token function are in apicem.py
 Controller ip, username and password are defined in apicem_config.py
 """
 from  apicem import *
@@ -15,9 +15,9 @@ try:
     response_json = resp.json()
     # All network-device detail is in "response"
     device = response_json["response"]
- 
+
     # Try un-comment the following line to see what we get
-    
+
     # print(json.dumps(device,indent=4))
 except:
     print ("Something wrong, cannot get network device information")
@@ -40,5 +40,5 @@ for item in device:
 
 # We use tabulate module here to print a nice table format. You should use "pip" tool to install in your local machine
 # For the simplicity we just copy the source code in working directory without  installing it.
-# Not showing id to user, it's just a hex string    
+# Not showing id to user, it's just a hex string
 print (tabulate(device_list, headers=['number','hostname','ip','type'],tablefmt="rst"))
