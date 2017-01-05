@@ -1,5 +1,5 @@
 """
-This script retrives an authenication token from APIC-EM and prints out it's value
+This script retrieves an authentication token from APIC-EM and prints out it's value
 It is standalone, there is no dependency.
 """
 

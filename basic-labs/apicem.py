@@ -23,7 +23,7 @@ def get_X_auth_token(ip=apicem_config.APICEM_IP,ver=apicem_config.VERSION,uname=
 
     Parameters
     ----------
-    ip (str): apic-em routable DNS addess or ip
+    ip (str): apic-em routable DNS address or ip
     ver (str): apic-em version
     uname (str): user name to authenticate with
     pword (str): password to authenticate with
@@ -62,7 +62,7 @@ def get(ip=apicem_config.APICEM_IP,ver=apicem_config.VERSION,uname=apicem_config
 
     Parameters
     ----------
-    ip (str): apic-em routable DNS addess or ip
+    ip (str): apic-em routable DNS address or ip
     ver (str): apic-em version
     uname (str): user name to authenticate with
     pword (str): password to authenticate with
@@ -92,7 +92,7 @@ def post(ip=apicem_config.APICEM_IP,ver=apicem_config.VERSION,uname=apicem_confi
 
     Parameters
     ----------
-    ip (str): apic-em routable DNS addess or ip
+    ip (str): apic-em routable DNS address or ip
     ver (str): apic-em version
     uname (str): user name to authenticate with
     pword (str): password to authenticate with
@@ -122,7 +122,7 @@ def put(ip=apicem_config.APICEM_IP,ver=apicem_config.VERSION,uname=apicem_config
 
     Parameters
     ----------
-    ip (str): apic-em routable DNS addess or ip
+    ip (str): apic-em routable DNS address or ip
     version (str): apic-em version
     username (str): user name to authenticate with
     password (str): password to authenticate with
@@ -152,7 +152,7 @@ def delete(ip=apicem_config.APICEM_IP,ver=apicem_config.VERSION,uname=apicem_con
 
     Parameters
     ----------
-    ip (str): apic-em routable DNS addess or ip
+    ip (str): apic-em routable DNS address or ip
     ver (str): apic-em version
     uname (str): user name to authenticate with
     pword (str): password to authenticate with

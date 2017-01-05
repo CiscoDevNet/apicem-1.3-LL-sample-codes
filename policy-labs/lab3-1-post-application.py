@@ -86,7 +86,7 @@ if __name__ == "__main__":
             print ("Oops! Application name cannot be NULL please try again or enter 'exit'")
         else:
             break
-    # Everyrhing is OK so far, initialize apicem instance and create application
+    # Everything is OK so far, initialize apicem instance and create application
     myapicem = apicem()
     post_app(myapicem,app_json)
 

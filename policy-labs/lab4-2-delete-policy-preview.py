@@ -7,11 +7,11 @@ from apicem import * # APIC-EM IP is assigned in apicem_config.py
 
 def select_policy_preview(ap):
     """
-    This function ask user to select a polcy from a list
+    This function ask user to select a policy from a list
 
     Parameters
     ----------
-    ap (object): apic-em oject that defined in apicem.py
+    ap (object): apic-em object that defined in apicem.py
 
     Return:
     -------
@@ -52,7 +52,7 @@ def select_policy_preview(ap):
     # Ask user's input
     # In the loop until 'policy preview id' is assigned or user entered 'exit'
 
-    id_idx = 3   # polcy preview id index in the list
+    id_idx = 3   # policy preview id index in the list
     name_idx = 1
     while True:
         user_input = input('=> Select a number for the policy to delete: ' )
@@ -62,7 +62,7 @@ def select_policy_preview(ap):
         if user_input.isdigit():
             if int(user_input) in range(1,len(preview_list)+1):
                 preview_id = preview_list[int(user_input)-1][id_idx]
-                policy_name = preview_list[int(user_input)-1][name_idx]                                    
+                policy_name = preview_list[int(user_input)-1][name_idx]
                 return [policy_name,preview_id] # return value of this function
             else:
                 print ("Oops! number is out of range, please try again or enter 'exit'")
