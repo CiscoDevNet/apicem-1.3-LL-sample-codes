@@ -37,12 +37,14 @@ def check_status(arg,arg1):
         try:
             r = get(api="flow-analysis/"+flowAnalysisId)
             response_json = r.json()
-            print ("Response from GET /flow-analysis/"+flowAnalysisId,json.dumps(response_json,indent=4))
+            # print ("Response from GET /flow-analysis/"+flowAnalysisId,json.dumps(response_json,indent=4))
             status = response_json["response"]["request"]["status"]
             print ("\n**** Check status here: ",status," ****\n")
         except:
             # Something is wrong
             print ("\nSomething is wrong when executing get /flow-analysis/{flowAnalysisId}")
+            sys.exit()
+    print ("Response from GET /flow-analysis/"+flowAnalysisId,json.dumps(response_json,indent=4))
     print("\n------ End of path trace ! ------")
 
 def get_host_and_device():
@@ -130,7 +132,9 @@ if __name__ == "__main__": # execute only if run as a script
     s_ip = select_ip('=> Select a number for the source IP from above list: ',nd_list,ip_idx) # ip_idx (=2) is the position of IP in the list
     d_ip = select_ip('=> Select a number for the destination IP from above list: ',nd_list,ip_idx) # ip_idx (=2) is the position of IP in the list
     # Now we have the souce and destination IPs we can use them to POST /flow-analysis
-    path_data = {"sourceIP": s_ip, "destIP": d_ip} # JSON input for POST /flow-analysis
+    path_data = {"sourceIP": s_ip, "destIP": d_ip} # JSON input for POST /flow-analysis - simplify one
+    # path_data= {"sourceIP":s_ip,"destIP":d_ip,"periodicRefresh":False,"inclusions":["QOS-STATS","INTERFACE-STATS","DEVICE-STATS","PERFORMANCE-STATS","ACL-TRACE"]}
+    # above JSON will trigger the respone to include stats of QoS, interface, device and ACL trace
     r = post(api="flow-analysis",data=path_data) # Execute POST /flow-analysis
     response_json = r.json()
     print ("Response from POST /flow-analysis:\n",json.dumps(response_json,indent=4))
